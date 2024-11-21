@@ -25,12 +25,12 @@ int main(){
     Color GREY = {29,29,29,255};
     Color BLUISH = {0, 106, 135,255};
     
-    int WINDOW_WIDTH = 1000;
-    int WINDOW_HEIGHT =1000;
-    int COLS =250;
-    int ROWS = 250;
-    int cellWidth = WINDOW_WIDTH/COLS;
-    int cellHeight = WINDOW_HEIGHT/ROWS;
+    const int WINDOW_WIDTH = 1000;
+    const int WINDOW_HEIGHT =1000;
+    const int COLS =250;
+    const int ROWS = 250;
+    const int cellWidth = WINDOW_WIDTH/COLS;
+    const int cellHeight = WINDOW_HEIGHT/ROWS;
 
     const int FPS = 30;
 
@@ -81,7 +81,8 @@ while(WindowShouldClose() == false){
         }
 
         // 2. Update State
-        grid = simulation(grid);
+        // this function updates the grid according to the rules. Initialy I was returning 'grid' but now I have changed it to void
+        simulation(grid);
        
         // 3. Drawing
         BeginDrawing();

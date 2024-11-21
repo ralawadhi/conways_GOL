@@ -43,19 +43,19 @@ int neighbourCount(std::vector<std::vector<int>> &grid, int position0, int posit
 
 }
 
-std::vector<std::vector<int>> simulation(std::vector<std::vector<int>> &grid){
+void simulation(std::vector<std::vector<int>> &grid){
 
     std::vector<std::vector<int>> newGrid(grid.size(), std::vector<int> (grid[0].size())); 
     newGrid = grid;
 
     
-    int const rows = grid.size();
-    int const cols = grid[0].size();
+    // int const rows = grid.size();
+    // int const cols = grid[0].size();
     
 
     //We go through each cell and apply the rules of the game. We store the new values in a new grid and return it.
-    for(int i{0}; i<rows;++i){
-        for(int j{0}; j<cols;++j){
+    for(int i{0}; i<grid.size();++i){
+        for(int j{0}; j<grid[0].size();++j){
             int neighbours = neighbourCount(grid, i, j);
 
             if (grid[i][j] == 1){
@@ -79,6 +79,6 @@ std::vector<std::vector<int>> simulation(std::vector<std::vector<int>> &grid){
 
     grid = newGrid;
     
-    return grid;
+    // return grid;
 
 }
