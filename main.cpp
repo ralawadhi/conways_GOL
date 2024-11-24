@@ -21,6 +21,8 @@ int main(){
     // Number of simulation updates. Currently not used as the simulation runs indefinitely until the user closes the window.
     const int generations{500};
 
+    
+
     // Defining colours to be used in Raylib.
     Color GREY = {29,29,29,255};
     Color BLUISH = {0, 106, 135,255};
@@ -37,14 +39,19 @@ int main(){
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Elementary Automaton");
     SetTargetFPS(FPS);
 
-    // initialising the grid and randomly populating it(or not) with zeros and ones.
-    std::vector<std::vector<int>> grid = makeGrid(ROWS,COLS, 1);
+    // initialising the grid, choosing the number of live states, and randomly populating it(or not) with zeros and ones.
+    std::vector<std::vector<int>> grid = makeGrid(ROWS,COLS, 2, 1);
     // optional Glider
-    grid[0][0] = 1;
-    grid[1][1] = 1;
-    grid[1][2] = 1;
-    grid[2][0] = 1;
-    grid[2][1] = 1;
+    // grid[0][0] = 2;
+    // grid[1][1] = 2;
+    // grid[1][2] = 2;
+    // grid[2][0] = 2;
+    // grid[2][1] = 2;
+
+    // grid[4][5] = 2;
+    // grid[4][6] = 2;
+    // grid[5][6] = 2;
+    // grid[5][5] = 0;
     
     // The below commented code is for printing out the simulation into the terminal.
 
@@ -82,7 +89,7 @@ while(WindowShouldClose() == false){
 
         // 2. Update State
         // this function updates the grid according to the rules. Initialy I was returning 'grid' but now I have changed it to void
-        simulation(grid);
+        simulation(grid, 1);
        
         // 3. Drawing
         BeginDrawing();
@@ -91,8 +98,18 @@ while(WindowShouldClose() == false){
             // if(eventTriggered(0.001)){
             // updateMat[row] = mat[row];}
             for (int col=0; col<COLS; col++){
-                DrawRectangle(col*cellWidth,row*cellWidth,cellWidth-1,cellHeight-1, GREY );;
-                DrawRectangle(col*cellWidth,row*cellWidth,cellWidth-1,cellHeight-1, grid[row][col] ? BLUISH:GREY );
+                DrawRectangle(col*cellWidth,row*cellWidth,cellWidth-1,cellHeight-1, GREY );
+                // DrawRectangle(col*cellWidth,row*cellWidth,cellWidth-1,cellHeight-1, grid[row][col] ? BLUISH:GREY );
+                if (grid[row][col]==1){
+                    DrawRectangle(col*cellWidth,row*cellWidth,cellWidth-1,cellHeight-1, BLUISH);
+
+                }
+                else if(grid[row][col]==2){
+                    DrawRectangle(col*cellWidth,row*cellWidth,cellWidth-1,cellHeight-1, BEIGE);
+                }
+                // else{
+                //     DrawRectangle(col*cellWidth,row*cellWidth,cellWidth-1,cellHeight-1, GREY);
+                // }
             }
         }
             
