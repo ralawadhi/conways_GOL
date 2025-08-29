@@ -89,7 +89,7 @@ while(WindowShouldClose() == false){
 
         // 2. Update State
         // this function updates the grid according to the rules. Initialy I was returning 'grid' but now I have changed it to void
-        simulation(grid, 1);
+        simulation(grid, 2);
        
         // 3. Drawing
         BeginDrawing();
